@@ -1,0 +1,86 @@
+{
+  "statute": "Bharatiya Nyaya Sanhita, 2023 (BNS)",
+  "version": "1.0",
+  "sections": [
+    {
+      "section": "303(2)",
+      "title": "Theft (चोरी)",
+      "legal_ingredients": [
+        "Dishonest intention to take property",
+        "Property must be movable",
+        "Taken out of the possession of any person",
+        "Taken without that person's consent",
+        "Moved in order to such taking"
+      ],
+      "classification": {
+        "bailable": "Non-Bailable",
+        "cognizable": "Cognizable",
+        "triable_by": "Any Magistrate"
+      },
+      "citizen_rights": {
+        "victim": [
+          "Right to lodge an FIR immediately under Section 173 BNSS",
+          "Right to receive a free copy of the FIR",
+          "Right to track investigation updates"
+        ],
+        "accused": [
+          "Right to know the grounds of arrest",
+          "Right to legal representation",
+          "Right to be produced before a Magistrate within 24 hours"
+        ]
+      },
+      "authority_powers_and_limits": {
+        "police_powers": [
+          "Power to arrest without warrant (Cognizable offense)",
+          "Power to seize stolen property as evidence"
+        ],
+        "police_limits": [
+          "Must record valid reasons for arrest under Section 35 BNSS",
+          "Cannot use unnecessary force or detention beyond 24 hours without court order"
+        ]
+      },
+      "immediate_lawful_remedies": [
+        "Visit nearest police station or submit Zero FIR",
+        "If police refuse FIR, send written complaint to SP/DCP under Section 173(4) BNSS",
+        "File application before Judicial Magistrate under Section 175(3) BNSS"
+      ]
+    },
+    {
+      "section": "351(2)",
+      "title": "Criminal Intimidation (आपराधिक धमकी)",
+      "legal_ingredients": [
+        "Threatening another person with injury to person, reputation, or property",
+        "Intent to cause alarm to that person",
+        "Intent to cause that person to do any act which he is not legally bound to do"
+      ],
+      "classification": {
+        "bailable": "Bailable",
+        "cognizable": "Non-Cognizable",
+        "triable_by": "Any Magistrate"
+      },
+      "citizen_rights": {
+        "victim": [
+          "Right to register a Non-Cognizable Report (NCR) under Section 174 BNSS",
+          "Right to approach the Magistrate directly for direction to investigate"
+        ],
+        "accused": [
+          "Cannot be arrested by police without a warrant from a Magistrate",
+          "Right to bail as a matter of right upon presentation"
+        ]
+      },
+      "authority_powers_and_limits": {
+        "police_powers": [
+          "Enter complaint into NCR register"
+        ],
+        "police_limits": [
+          "Cannot investigate or arrest without specific Magistrate order under Section 174(2) BNSS"
+        ]
+      },
+      "immediate_lawful_remedies": [
+        "File NCR at the local police station",
+        "Preserve evidence (call recordings, WhatsApp screenshots, CCTV footage)",
+        "Approach Magistrate under Section 174(2) BNSS for investigation order"
+      ]
+    }
+  ]
+        }
