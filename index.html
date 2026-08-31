@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Law | AI Legal Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #070d1e;
+            --card-bg: #0f1c3f;
+            --accent: #38bdf8;
+            --accent-gold: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.12);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        header { padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+        .container { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+        .hero { text-align: center; margin-bottom: 24px; }
+        .badge { display: inline-block; background: rgba(56, 189, 248, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 10px; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .hero h1 { font-size: 1.7rem; margin-bottom: 8px; font-weight: 700; }
+        .hero p { font-size: 0.9rem; color: var(--text-muted); }
+        .query-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+        textarea { width: 100%; height: 90px; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: #fff; font-size: 0.95rem; resize: none; outline: none; margin-bottom: 12px; }
+        textarea:focus { border-color: var(--accent); }
+        .btn-submit { background: var(--accent); color: #070d1e; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; }
+        .result-container { display: none; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+        .result-header { border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 14px; }
+        .section-tag { background: var(--accent-gold); color: #000; font-weight: 700; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; display: inline-block; margin-bottom: 6px; }
+        .result-title { font-size: 1.2rem; color: #fff; }
+        .block-title { font-size: 0.95rem; color: var(--accent); margin: 14px 0 6px; font-weight: 600; }
+        ul.legal-list { list-style: none; padding-left: 0; }
+        ul.legal-list li { position: relative; padding-left: 18px; margin-bottom: 8px; color: #cbd5e1; font-size: 0.85rem; }
+        ul.legal-list li::before { content: "•"; position: absolute; left: 4px; color: var(--accent); font-weight: bold; }
+        .disclaimer-box { background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 14px; margin-top: 24px; font-size: 0.8rem; color: #e2e8f0; }
+        footer { text-align: center; padding: 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">⚖️ Intelligence Law</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted);">BNS/BNSS Engine v1.0</div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <span class="badge">Legal Guidance Engine</span>
+            <h1>अपनी कानूनी समस्या यहाँ लिखें</h1>
+            <p>सिस्टम भारतीय कानून (BNS, BNSS) के आधार पर आपके अधिकार और उपाय बताएगा।</p>
+        </section>
+
+        <div class="query-box">
+            <textarea id="userQuery" placeholder="उदाहरण: किसी ने मेरी बाइक चुरा ली है या मुझे फोन पर कोई जान से मारने की धमकी दे रहा है..."></textarea>
+            <button class="btn-submit" onclick="processLegalQuery()">कानूनी विश्लेषण देखें (Analyze Legally)</button>
+        </div>
+
+        <div id="resultBox" class="result-container">
+            <div class="result-header">
+                <span id="resTag" class="section-tag">BNS Provision</span>
+                <h2 id="resTitle" class="result-title">Analyzing...</h2>
+            </div>
+            <div class="block-title">📋 अपराध के अनिवार्य तत्व (Legal Ingredients)</div>
+            <ul id="resIngredients" class="legal-list"></ul>
+            <div class="block-title">🛡️ आपके अधिकार (Citizen Rights)</div>
+            <ul id="resRights" class="legal-list"></ul>
+            <div class="block-title">👮 पुलिस की शक्तियाँ एवं सीमाएँ (Authority Limits)</div>
+            <ul id="resLimits" class="legal-list"></ul>
+            <div class="block-title">⚖️ अब आपको क्या करना चाहिए (Lawful Remedies)</div>
+            <ul id="resRemedies" class="legal-list"></ul>
+        </div>
+
+        <div class="disclaimer-box">
+            <strong>⚠️ महत्वपूर्ण सूचना:</strong> Intelligence Law केवल कानूनी जागरूकता और निर्णय-समर्थन के लिए है। यह किसी न्यायालय या अधिवक्ता का विकल्प नहीं है।
+        </div>
+    </div>
+
+    <footer>© 2026 Intelligence Law Project | Neutral, Source-Based & Rights-Focused</footer>
+
+    <script>
+        const legalDatabase = [
+            {
+                keywords: ["चोरी", "बाइक", "सामान", "theft", "stolen", "mobile stolen"],
+                section: "BNS Section 303(2)",
+                title: "चोरी (Theft) का मामला",
+                ingredients: ["किसी की चल संपत्ति को बेईमानी से लेने का इरादा।", "सहमति के बिना संपत्ति को हटाना।"],
+                rights: ["धारा 173 BNSS: थाने में तत्काल निःशुल्क FIR दर्ज कराने का अधिकार।", "FIR की एक कॉपी मुफ्त पाने का अधिकार।"],
+                limits: ["संज्ञेय अपराध होने पर पुलिस बिना वारंट जांच शुरू कर सकती है।", "धारा 35 BNSS: बिना ठोस कारण अनावश्यक प्रताड़ित या गिरफ्तार नहीं किया जा सकता।"],
+                remedies: ["1. नजदीकी थाने में लिखित शिकायत दें या ई-एफआईआर/ज़ीरो एफआईआर दर्ज कराएं।", "2. थाना प्रभारी मना करे तो धारा 173(4) BNSS के तहत SP/DCP को शिकायत भेजें।", "3. धारा 175(3) BNSS के तहत मजिस्ट्रेट के समक्ष आवेदन करें।"]
+            },
+            {
+                keywords: ["धमकी", "जान से मारने", "गाली", "threat", "intimidation"],
+                section: "BNS Section 351(2)",
+                title: "आपराधिक धमकी (Criminal Intimidation)",
+                ingredients: ["शरीर, संपत्ति या प्रतिष्ठा को नुकसान पहुँचाने की धमकी देना।", "व्यक्ति में भय पैदा करने का इरादा।"],
+                rights: ["धारा 174 BNSS के तहत NCR दर्ज कराने का अधिकार।", "साक्ष्य प्रस्तुत करने और सुरक्षा की मांग का अधिकार।"],
+                limits: ["असंज्ञेय मामले में पुलिस बिना मजिस्ट्रेट के आदेश के जांच या गिरफ्तारी नहीं कर सकती।"],
+                remedies: ["1. कॉल रिकॉर्डिंग, चैट और साक्ष्य सुरक्षित रखें।", "2. थाने में गैर-संज्ञेय रिपोर्ट (NCR) दर्ज करवाएं।", "3. धारा 174(2) BNSS के तहत मजिस्ट्रेट से जांच के आदेश की मांग करें।"]
+            }
+        ];
+
+        function processLegalQuery() {
+            const query = document.getElementById("userQuery").value.toLowerCase().trim();
+            const resultBox = document.getElementById("resultBox");
+            if (!query) { alert("कृपया अपनी समस्या लिखें।"); return; }
+
+            let matched = legalDatabase.find(item => item.keywords.some(k => query.includes(k)));
+            if (!matched) {
+                matched = {
+                    section: "सामान्य विधिक प्रक्रिया",
+                    title: "कानूनी विश्लेषण एवं मार्गदर्शन",
+                    ingredients: ["मामले के पूर्ण तथ्य और घटना की तिथि/समय स्पष्ट होना अनिवार्य है।"],
+                    rights: ["अनुच्छेद 21: निष्पक्ष सुनवाई और विधिक सहायता का अधिकार।"],
+                    limits: ["प्रशासन कानून द्वारा स्थापित प्रक्रिया (Due Process) से बाहर कार्य नहीं कर सकता।"],
+                    remedies: ["1. सभी मौखिक व दस्तावेजी साक्ष्य सुरक्षित रखें।", "2. नजदीकी पुलिस स्टेशन या सक्षम प्राधिकरण में लिखित प्रार्थना पत्र दें।"]
+                };
+            }
+
+            document.getElementById("resTag").innerText = matched.section;
+            document.getElementById("resTitle").innerText = matched.title;
+            populateList("resIngredients", matched.ingredients);
+            populateList("resRights", matched.rights);
+            populateList("resLimits", matched.limits);
+            populateList("resRemedies", matched.remedies);
+            resultBox.style.display = "block";
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function populateList(id, items) {
+            const ul = document.getElementById(id);
+            ul.innerHTML = "";
+            items.forEach(i => {
+                const li = document.createElement("li");
+                li.innerText = i;
+                ul.appendChild(li);
+            });
+        }
+    </script>
+</body>
+              </html>
+              
