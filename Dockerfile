@@ -11,6 +11,7 @@ RUN npm install
 
 # Copy source code
 COPY src ./src
+COPY src/server.ts ./src/server.ts
 
 # Expose the port Render will use (PORT env var set by Render automatically)
 EXPOSE 3001
