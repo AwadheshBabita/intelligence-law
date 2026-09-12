@@ -3,7 +3,7 @@ import http from "http";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
-import { sourceStorage } from "./sources/source-management.js";
+import { sourceStorage } from "./sources/source-management";
 import { legalContentStorage } from "./legal-kb/content-management.js";
 import { caseStorage } from "./cases/storage.js";
 import { hashPassword, verifyPassword, createUser } from "./auth/hash.js";
